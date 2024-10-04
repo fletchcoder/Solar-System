@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+.npm/
+
+# Production
+build/
+
+# Templates
+template/src/__tests__/__snapshots__/
+
+# Logs
+lerna-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.changelog
+
+# Environment Variables
+.env 
+.env.local
