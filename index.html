@@ -8,7 +8,19 @@
             name="description"
             content="Demonstration of Three.js meshes and textures using planets"
         />
+        <link rel="stylesheet" href="/src/styles/main.css" />
         <title>Solar System Explorer</title>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js",
+                    "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/"
+                }
+            }
+        </script>
     </head>
-    <body></body>
+    <body>
+        <h1>Explore The Solar System</h1>
+        <script type="module" src="src/js/index.js"></script>
+    </body>
 </html>
