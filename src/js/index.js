@@ -35,6 +35,7 @@ scene.add(light);
 function animate() {
     requestAnimationFrame(animate);
 
+    sunMesh.rotation.y += 0.004;
     renderer.render(scene, camera);
 }
 
