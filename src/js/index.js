@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "jsm/controls/OrbitControls.js";
 import getStarfield from "./getStarfield.js";
+import { getFresnelMat } from "./getFresnelMat.js";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -20,11 +21,16 @@ new OrbitControls(camera, renderer.domElement);
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, 12);
 const material = new THREE.MeshStandardMaterial({
-    map: loader.load("../src/images/textures/stars/sunmap.jpg"),
+    map: loader.load("../src/images/textures/stars/suntexture.png"),
 });
 
 const sunMesh = new THREE.Mesh(geometry, material);
 sunGroup.add(sunMesh);
+
+const fresnelMat = getFresnelMat({ rimHex: 0xfee707, facingHex: 0xfee707 });
+const glowMesh = new THREE.Mesh(geometry, fresnelMat);
+glowMesh.scale.setScalar(1.005);
+sunGroup.add(glowMesh);
 
 const stars = getStarfield({ numStars: 2000 });
 scene.add(stars);
@@ -36,6 +42,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     sunMesh.rotation.y += 0.004;
+    glowMesh.rotation.y += 0.004;
     renderer.render(scene, camera);
 }
 
