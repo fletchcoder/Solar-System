@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { OrbitControls } from "jsm/controls/OrbitControls.js";
 import getStarfield from "./getStarfield.js";
 import { getFresnelMat } from "./getFresnelMat.js";
 
@@ -16,7 +15,7 @@ const sunGroup = new THREE.Group();
 sunGroup.rotation.z = (-7.25 * Math.PI) / 180;
 scene.add(sunGroup);
 
-new OrbitControls(camera, renderer.domElement);
+// new OrbitControls(camera, renderer.domElement);
 
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, 12);

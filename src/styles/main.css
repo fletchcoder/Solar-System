@@ -22,3 +22,86 @@ h1 {
     text-align: center;
     color: var(--main-text-color);
 }
+
+a {
+    position: absolute;
+    z-index: 900;
+}
+
+.planet-orbit {
+    position: absolute;
+    top: 8%;
+    left: 28%;
+    transform-origin: center;
+    width: 830px;
+    height: 830px;
+    transition: all 3s ease;
+    animation: orbit 25s linear infinite;
+    border-radius: 50%;
+}
+
+.planet-orbit:hover {
+    animation: none;
+}
+
+.navbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+    width: 35px;
+    height: 35px;
+}
+
+.navbutton:first-of-type {
+    left: 50%;
+    top: -1%;
+}
+
+.navbutton:nth-of-type(2) {
+    left: 60%;
+    top: 0%;
+}
+
+.navbutton:nth-of-type(3) {
+    left: 74%;
+    top: 6%;
+}
+
+.navbutton:nth-of-type(4) {
+    left: 95%;
+    top: 30%;
+}
+
+.navbutton:nth-of-type(5) {
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.navbutton:nth-of-type(6) {
+    left: 35%;
+    top: 97%;
+}
+
+.navbutton:nth-of-type(7) {
+    left: 1%;
+    top: 65%;
+}
+
+.navbutton:nth-of-type(8) {
+    left: -2%;
+    top: 45%;
+}
+
+.navbutton:hover {
+    border-radius: 50%;
+    padding: 5px;
+    border: 3px dotted yellow;
+}
+
+@keyframes orbit {
+    100% {
+        rotate: 1turn;
+    }
+}
