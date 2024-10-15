@@ -1,6 +1,10 @@
 :root {
     --bg-color: rgb(21, 15, 110);
+    --bg-hover-color: rgba(10, 5, 75, 0.774);
+    --bg-close-color: rgb(161, 15, 15);
     --main-text-color: rgb(207, 204, 250);
+    --fs-medium: 1.8rem;
+    --fs-small: 1.4rem;
 }
 
 html,
@@ -23,9 +27,10 @@ h1 {
     color: var(--main-text-color);
 }
 
-a {
-    position: absolute;
-    z-index: 900;
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: var(--fs-medium);
+    }
 }
 
 .planet-orbit {
@@ -36,12 +41,109 @@ a {
     width: 830px;
     height: 830px;
     transition: all 3s ease;
-    animation: orbit 25s linear infinite;
-    border-radius: 50%;
+    animation: orbit 45s linear infinite;
+    border-radius: 100%;
 }
 
-.planet-orbit:hover {
-    animation: none;
+.planet-orbit a {
+    text-decoration: none;
+    position: absolute;
+    z-index: 900;
+    animation: stay 45s linear infinite;
+}
+
+.planet-orbit a p {
+    margin-left: 3px;
+    color: black;
+    opacity: 0.1;
+    transition: all 0.5s ease;
+}
+
+.planet-orbit a p:hover {
+    opacity: 1;
+    color: var(--main-text-color);
+}
+
+.planet-select {
+    display: none;
+}
+
+.planet-button {
+    display: none;
+}
+
+#planets {
+    display: none;
+}
+
+@media screen and (max-width: 1500px) {
+    .planet-orbit {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1499px) {
+    .planet-select {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 200px;
+        height: 38px;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .planet-button {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        width: 50%;
+        bottom: 0;
+        left: 25%;
+        background-color: var(--bg-color);
+    }
+
+    #planets {
+        position: absolute;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+        font-size: var(--fs-small);
+        top: 10%;
+        z-index: 999;
+        width: 100%;
+        height: 80%;
+        background-color: var(--bg-color);
+    }
+
+    #planets div a,
+    #planets div a:visited {
+        color: var(--main-text-color);
+        text-decoration: none;
+    }
+
+    #planets div:not(:nth-of-type(9)):hover {
+        background-color: var(--bg-hover-color);
+        padding: 1rem;
+        text-decoration: underline;
+    }
+
+    #planets div:nth-of-type(9) {
+        cursor: pointer;
+        grid-column: 1 / span 2;
+        background-color: var(--bg-close-color);
+        padding-inline: 30px;
+        padding-block: 5px;
+    }
+
+    #planets div:nth-of-type(9):hover {
+        border: 3px solid black;
+    }
 }
 
 .navbutton {
@@ -94,14 +196,14 @@ a {
     top: 45%;
 }
 
-.navbutton:hover {
-    border-radius: 50%;
-    padding: 5px;
-    border: 3px dotted yellow;
-}
-
 @keyframes orbit {
     100% {
         rotate: 1turn;
+    }
+}
+
+@keyframes stay {
+    100% {
+        rotate: -1turn;
     }
 }
