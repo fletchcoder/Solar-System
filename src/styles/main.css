@@ -41,7 +41,7 @@ h1 {
     width: 830px;
     height: 830px;
     transition: all 3s ease;
-    animation: orbit 45s linear infinite;
+    animation: orbit 55s linear infinite;
     border-radius: 100%;
 }
 
@@ -49,7 +49,7 @@ h1 {
     text-decoration: none;
     position: absolute;
     z-index: 900;
-    animation: stay 45s linear infinite;
+    animation: stay 55s linear infinite;
 }
 
 .planet-orbit a p {
@@ -108,7 +108,6 @@ h1 {
 
     #planets {
         position: absolute;
-        display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         align-items: center;
@@ -196,14 +195,26 @@ h1 {
     top: 45%;
 }
 
+.home-button {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--bg-color);
+    font-size: var(--fs-medium);
+    left: 50%;
+    border: none;
+    color: var(--main-text-color);
+    transform: translate(-50%, -50%);
+    width: 100px;
+}
+
 @keyframes orbit {
     100% {
-        rotate: 1turn;
+        rotate: -1turn;
     }
 }
 
 @keyframes stay {
     100% {
-        rotate: -1turn;
+        rotate: 1turn;
     }
 }

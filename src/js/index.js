@@ -15,8 +15,6 @@ const sunGroup = new THREE.Group();
 sunGroup.rotation.z = (-7.25 * Math.PI) / 180;
 scene.add(sunGroup);
 
-// new OrbitControls(camera, renderer.domElement);
-
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, 12);
 const material = new THREE.MeshStandardMaterial({
