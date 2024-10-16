@@ -176,22 +176,22 @@ h1 {
 
 .navbutton:nth-of-type(5) {
     left: 50%;
-    top: 100%;
+    top: 98%;
     transform: translate(-50%, -50%);
 }
 
 .navbutton:nth-of-type(6) {
     left: 35%;
-    top: 97%;
+    top: 95%;
 }
 
 .navbutton:nth-of-type(7) {
-    left: 1%;
+    left: 3%;
     top: 65%;
 }
 
 .navbutton:nth-of-type(8) {
-    left: -2%;
+    left: 2%;
     top: 45%;
 }
 
