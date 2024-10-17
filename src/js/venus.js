@@ -5,43 +5,44 @@ import { OrbitControls } from "jsm/controls/OrbitControls.js";
 const width = window.innerWidth;
 const height = window.innerHeight;
 const scene = new THREE.Scene();
-
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-camera.position.z = 5;
+camera.position.z = 2.5;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(width, height);
 document.body.appendChild(renderer.domElement);
 
-new OrbitControls(camera, renderer.domElement);
+const venusGroup = new THREE.Group();
+venusGroup.rotation.z = (2.64 * Math.PI) / 180;
+scene.add(venusGroup);
 
-const mercGroup = new THREE.Group();
-mercGroup.rotation.z = (-0.03 * Math.PI) / 180;
-scene.add(mercGroup);
+new OrbitControls(camera, renderer.domElement);
 
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, 12);
 const material = new THREE.MeshStandardMaterial({
-    map: loader.load("/src/images/textures/planets/mercury/mercurymap.jpg"),
+    map: loader.load("/src/images/textures/planets/venus/venusmap.jpg"),
+    bumpMap: loader.load("/src/images/textures/planets/venus/venusbump.jpg"),
+    bumpScale: 1,
 });
 
-const mercMesh = new THREE.Mesh(geometry, material);
-mercGroup.add(mercMesh);
-
-const stars = getStarfield({ numStars: 100 });
-scene.add(stars);
+const venusMesh = new THREE.Mesh(geometry, material);
+venusGroup.add(venusMesh);
 
 const light = new THREE.AmbientLight();
 scene.add(light);
 
-const sunlight = new THREE.DirectionalLight(0xffffff, 5);
-sunlight.position.set(-4, 0.5, 1.5);
+const sunlight = new THREE.DirectionalLight(0xffffff, 2);
+sunlight.position.set(-10, 0.5, 1.5);
 scene.add(sunlight);
+
+const stars = getStarfield({ numStars: 300 });
+scene.add(stars);
 
 function animate() {
     requestAnimationFrame(animate);
 
-    mercMesh.rotation.y += 0.0005;
+    venusGroup.rotation.y -= 0.000125;
     renderer.render(scene, camera);
 }
 
