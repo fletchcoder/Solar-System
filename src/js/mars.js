@@ -7,7 +7,7 @@ const height = window.innerHeight;
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-camera.position.z = 5;
+camera.position.z = 2.5;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -17,33 +17,35 @@ document.body.appendChild(renderer.domElement);
 
 new OrbitControls(camera, renderer.domElement);
 
-const mercGroup = new THREE.Group();
-mercGroup.rotation.z = (-0.03 * Math.PI) / 180;
-scene.add(mercGroup);
+const marsGroup = new THREE.Group();
+marsGroup.rotation.z = (-25.19 * Math.PI) / 180;
+scene.add(marsGroup);
 
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, 12);
 const material = new THREE.MeshStandardMaterial({
-    map: loader.load("/src/images/textures/planets/mercury/mercurymap.jpg"),
+    map: loader.load("/src/images/textures/planets/mars/marsmap1k.jpg"),
+    bumpMap: loader.load("/src/images/textures/planets/mars/marsbump1k.jpg"),
+    bumpScale: 1.004,
 });
 
-const mercMesh = new THREE.Mesh(geometry, material);
-mercGroup.add(mercMesh);
+const marsMesh = new THREE.Mesh(geometry, material);
+marsGroup.add(marsMesh);
 
-const stars = getStarfield({ numStars: 100 });
+const stars = getStarfield({ numStars: 400 });
 scene.add(stars);
 
-const light = new THREE.AmbientLight();
+const light = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light);
 
-const sunlight = new THREE.DirectionalLight(0xffffff, 5);
-sunlight.position.set(-4, 0.5, 1.5);
+const sunlight = new THREE.DirectionalLight(0xffffff, 1.5);
+sunlight.position.set(-2, 0.5, 1.5);
 scene.add(sunlight);
 
 function animate() {
     requestAnimationFrame(animate);
 
-    mercMesh.rotation.y += 0.0005;
+    marsMesh.rotation.y += 0.0025;
     renderer.render(scene, camera);
 }
 

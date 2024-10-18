@@ -10,6 +10,8 @@ camera.position.z = 2.5;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(width, height);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 
 const venusGroup = new THREE.Group();
@@ -29,7 +31,7 @@ const material = new THREE.MeshStandardMaterial({
 const venusMesh = new THREE.Mesh(geometry, material);
 venusGroup.add(venusMesh);
 
-const light = new THREE.AmbientLight();
+const light = new THREE.AmbientLight(0xffffff, 2);
 scene.add(light);
 
 const sunlight = new THREE.DirectionalLight(0xffffff, 2);

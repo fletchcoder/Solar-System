@@ -197,6 +197,7 @@ h1 {
 
 .home-button {
     position: absolute;
+    cursor: pointer;
     bottom: 0;
     background-color: var(--bg-color);
     font-size: var(--fs-medium);
