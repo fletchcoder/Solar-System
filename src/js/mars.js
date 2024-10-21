@@ -35,7 +35,7 @@ marsGroup.add(marsMesh);
 const stars = getStarfield({ numStars: 400 });
 scene.add(stars);
 
-const light = new THREE.AmbientLight(0xffffff, 0.5);
+const light = new THREE.AmbientLight(0xffffff, 0.7);
 scene.add(light);
 
 const sunlight = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -46,6 +46,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     marsMesh.rotation.y += 0.0025;
+    stars.rotation.y -= 0.0025;
     renderer.render(scene, camera);
 }
 

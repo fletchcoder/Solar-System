@@ -45,6 +45,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     venusGroup.rotation.y -= 0.000125;
+    stars.rotation.y += 0.000125;
     renderer.render(scene, camera);
 }
 

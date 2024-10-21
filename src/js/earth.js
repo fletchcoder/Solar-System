@@ -76,6 +76,7 @@ function animate() {
     earthMesh.rotation.y += 0.002;
     glowMesh.rotation.y += 0.002;
     lightsMesh.rotation.y += 0.002;
+    stars.rotation.y -= 0.002;
     renderer.render(scene, camera);
 }
 
