@@ -4,7 +4,9 @@ import { OrbitControls } from "jsm/controls/OrbitControls.js";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
+
 const scene = new THREE.Scene();
+
 const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
 camera.position.z = 2.1;
 
@@ -14,46 +16,37 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 
-const venusGroup = new THREE.Group();
-venusGroup.rotation.z = (2.64 * Math.PI) / 180;
-scene.add(venusGroup);
-
 new OrbitControls(camera, renderer.domElement);
+
+const nepGroup = new THREE.Group();
+nepGroup.rotation.z = (-28.32 * Math.PI) / 180;
+scene.add(nepGroup);
 
 const loader = new THREE.TextureLoader();
 const geometry = new THREE.IcosahedronGeometry(1, 12);
 const material = new THREE.MeshStandardMaterial({
-    map: loader.load("/src/images/textures/planets/venus/venusmap.jpg"),
-    bumpMap: loader.load("/src/images/textures/planets/venus/venusbump.jpg"),
-    bumpScale: 1,
+    map: loader.load("/src/images/textures/planets/neptune/neptunemap.jpg"),
 });
 
-const venusMesh = new THREE.Mesh(geometry, material);
-venusGroup.add(venusMesh);
+const nepMesh = new THREE.Mesh(geometry, material);
+nepGroup.add(nepMesh);
 
-const light = new THREE.AmbientLight(0xffffff, 2);
+const stars = getStarfield({ numStars: 450 });
+scene.add(stars);
+
+const light = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light);
 
-const sunlight = new THREE.DirectionalLight(0xffffff, 2);
-sunlight.position.set(-10, 0.5, 1.5);
+const sunlight = new THREE.DirectionalLight(0xffffff, 0.5);
+sunlight.position.set(-6, 0.5, 1.5);
 scene.add(sunlight);
-
-const stars = getStarfield({ numStars: 300 });
-scene.add(stars);
 
 function animate() {
     requestAnimationFrame(animate);
 
-    venusGroup.rotation.y -= 0.000125;
-    stars.rotation.y += 0.000125;
+    nepMesh.rotation.y += 0.0013;
+    stars.rotation.y -= 0.0013;
     renderer.render(scene, camera);
 }
 
 animate();
-
-function handleWindowResize() {
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-}
-window.addEventListener("resize", handleWindowResize, false);
